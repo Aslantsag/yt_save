@@ -88,8 +88,7 @@ class MainWindow(QWidget):
                 self.load_progress.show()
                 progress = Download(self.line.text(), self.opt)
                 self.save_in_file()
-                while progress: 
-                    print(progress)
+                for i in range(101): 
                     self.load_progress.setValue(i)
                     if i > 99:
                         self.load_progress.hide()
