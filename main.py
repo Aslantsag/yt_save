@@ -12,6 +12,7 @@ txt_send = "Save MP3"
 txt_send2 = "Save Video"
 txt_line = "Enter URL from YouTube"
 error_txt = "Error! Fill in the field!"
+error_404 = "Error 404!"
 success_text = "Upload successful."
 
 CSS = '''
@@ -45,7 +46,6 @@ class MainWindow(QWidget):
 
         self.set_appear()
 
-        # старт:
         self.show()
 
     def initUI(self):
@@ -86,10 +86,10 @@ class MainWindow(QWidget):
             try:
                 self.status_text.hide()
                 self.load_progress.show()
-                Download(self.line.text(), self.opt)
+                progress = Download(self.line.text(), self.opt)
                 self.save_in_file()
-                for i in range(101): 
-                    time.sleep(0.02) 
+                while progress: 
+                    print(progress)
                     self.load_progress.setValue(i)
                     if i > 99:
                         self.load_progress.hide()
@@ -101,7 +101,7 @@ class MainWindow(QWidget):
                         break
             except:
                 self.load_progress.hide()
-                self.status_text.setText("Error 404!")
+                self.status_text.setText(error_404)
                 self.status_text.setStyleSheet("color: red; font-size: 46px;")
                 self.status_text.show()
         else:
@@ -109,15 +109,22 @@ class MainWindow(QWidget):
             self.status_text.setStyleSheet("color: red; font-size: 46px;")
             self.status_text.show()
     
+    # def save_in_file(self):
+    #     file = open('list/list.txt')
+    #     read = file.read().split(";")
+    #     count_url = len(read)
+    #     file.close()
+    #     url = f"{count_url} - {self.line.text()};\n"
+    #     file = open('list/list.txt', 'a')
+    #     file.write(url)
+    #     file.close()
+
     def save_in_file(self):
-        file = open('list/list.txt')
-        read = file.read().split(";")
-        count_url = len(read)
-        file.close()
-        url = f"{count_url} - {self.line.text()};\n"
-        file = open('list/list.txt', 'a')
-        file.write(url)
-        file.close()
+        with open('list/list.txt', 'r+') as file:
+            urls = file.read().split(";")
+            url_count = len(urls)
+            url = f"{url_count} - {self.line.text()};\n"
+            file.write(url)
 
     def connects(self):
         self.btn_send.clicked.connect(self.save)

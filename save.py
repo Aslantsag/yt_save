@@ -7,9 +7,9 @@ class Download(object):
         self.url = url
         self.opt = opt
         self.save_path = os.path.join(os.path.expanduser('~'), 'Downloads')
-        self.song()
+        self.save()
 
-    def song(self):
+    def save(self):
         if self.opt == 'video':
             opts = {'outtmpl': self.save_path + '/%(title)s.%(ext)s'}
         else:
