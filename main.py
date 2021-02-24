@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QPu
 from save import Download
 
 
-win_width, win_height = 800, 400
+win_width, win_height = 600, 400
 win_x, win_y = 600, 400
 
 txt_title = "App for downloading Sound & Video from YouTube"
