@@ -107,16 +107,6 @@ class MainWindow(QWidget):
             self.status_text.setText(error_txt)
             self.status_text.setStyleSheet("color: red; font-size: 46px;")
             self.status_text.show()
-    
-    # def save_in_file(self):
-    #     file = open('list/list.txt')
-    #     read = file.read().split(";")
-    #     count_url = len(read)
-    #     file.close()
-    #     url = f"{count_url} - {self.line.text()};\n"
-    #     file = open('list/list.txt', 'a')
-    #     file.write(url)
-    #     file.close()
 
     def save_in_file(self):
         with open('list/list.txt', 'r+') as file:
