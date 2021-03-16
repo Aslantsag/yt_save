@@ -37,15 +37,10 @@ class MainWindow(QWidget):
     def __init__(self, parent=None, flags=Qt.WindowFlags()):
 
         super().__init__(parent=parent, flags=flags)
-
         self.opt = 'video'
-
         self.initUI()
-
         self.connects()
-
         self.set_appear()
-
         self.show()
 
     def initUI(self):
@@ -62,7 +57,6 @@ class MainWindow(QWidget):
         self.load_progress.setStyleSheet(f"width: {win_width}px; height: 40px;")
         self.status_text.hide()
         self.load_progress.hide()
-
         self.layout_line1 = QHBoxLayout()
         self.layout_line2 = QVBoxLayout()
         self.layout_line2.addWidget(self.status_text, alignment = Qt.AlignCenter)
